@@ -56,5 +56,5 @@ def solution(citations):
                                #즉 enumerate에 start를 이용해서 현재 자신보다 큰 수가 몇개 있는지 판별
                     #최솟값 value의 값을 min으로 추출하고, 그 값은 enumerate가 끝나는 citations 리스트의 크기에 해당하는 갯수가 나온다. 
                 #이들을 map으로 묶으면, 한 value의 입장에서 보는 최솟값 value의 집합이 나온다. 
-            #즉 h값들의 집합이나온다. h값중 최대값을 max로 뽑아서 출력하면 된다.
+            #즉 h값들의 집합이나온다. h값중 최대값을 max로 뽑아서 출력하면 된다!!
     return answer
