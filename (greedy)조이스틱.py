@@ -39,18 +39,25 @@ def solution(name):
     
     # 기본 최소 좌우이동 횟수는 길이 - 1
     min_move = len(name) - 1
-    
+    next = 0
+
+    while name[min_move] == 'A' and min_move > 0:
+        min_move -= 1
+
+    if (min_move < 0):
+        return answer
+
     for i, char in enumerate(name):
-    	# 해당 알파벳 변경 최솟값 추가
+    	# 해당 알파벳 변경 최솟값 추가, A에서 시작하는것이 빠를지 Z에서 시작하는 것이 빠를지
         answer += min(ord(char) - ord('A'), ord('Z') - ord(char) + 1)
         
         # 해당 알파벳 다음부터 연속된 A 문자열 찾기
         next = i + 1
         while next < len(name) and name[next] == 'A':
-            next += 1
-            
-        # 기존, 연속된 A의 왼쪽시작 방식, 연속된 A의 오른쪽시작 방식 비교 및 갱신
-        min_move = min([min_move, 2 *i + len(name) - next, i + 2 * (len(name) -next)])
+            next += 1 #next는 연속된 A 구간의 마지막 A의 인덱스를 가리킨다.
+
+        #
+        min_move = min(min_move, i + (i + len(name)) - next)
         
     # 알파벳 변경(상하이동) 횟수에 좌우이동 횟수 추가
     answer += min_move
