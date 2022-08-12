@@ -88,17 +88,26 @@ result
 ﻿
 '''
 
+import sys
+import math
+import re
+from collections import deque
+from itertools import permutations
+from collections import Counter
+
+sys.stdin = open("input.txt", "r")
+
 
 def solution(arr):
     result = [0, 0]
     length = len(arr)
 
-    def compression(a, b, l):
+    def compression(a, b, l):  # 0,0,4
         start = arr[a][b]
-        for i in range(a, a + l):
-            for j in range(b, b + l):
-                if arr[i][j] != start:
-                    l = l // 2
+        for i in range(a, a + l):  # 0,2
+            for j in range(b, b + l):  # 0,2
+                if arr[i][j] != start:  # arr[0][2]:0 != start:1:
+                    l = l // 2  # l = 4//2
                     compression(a, b, l)
                     compression(a, b + l, l)
                     compression(a + l, b, l)
@@ -110,3 +119,8 @@ def solution(arr):
     compression(0, 0, length)
 
     return (result)
+
+
+if __name__ == "__main__":
+    arr = [[1, 1, 0, 0], [1, 0, 0, 0], [1, 0, 0, 1], [1, 1, 1, 1]]
+    solution(arr)
