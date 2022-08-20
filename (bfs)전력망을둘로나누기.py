@@ -148,3 +148,28 @@ def solution(n, wires):
         # 기존 answer와 현재 해당하는 와이어를 끊었을 때 노드 차이 비교해서 최솟값으로 업데이트
         answer = min(answer, abs(n - temp - temp))
     return answer
+
+#def2
+import sys
+import math
+import re
+from collections import deque
+from collections import Counter
+from itertools import permutations
+from itertools import product
+sys.stdin=open("input.txt","r")
+
+
+def solution(n, wires):
+    ans = n
+    for sub in (wires[i+1:] + wires[:i] for i in range(len(wires))):
+        s = set(sub[0])
+        [s.update(v) for _ in sub for v in sub if set(v) & s]
+        ans = min(ans, abs(2 * len(s) - n))
+    return ans
+
+if __name__=="__main__":
+
+    n = 9
+    wires = [[1,3],[2,3],[3,4],[4,5],[4,6],[4,7],[7,8],[7,9]]
+    solution(n,wires)
